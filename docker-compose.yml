@@ -1,0 +1,24 @@
+version: '2'
+
+services:
+  drone-server:
+    image: drone/drone:1
+
+    ports:
+      - 8083:80
+
+    volumes:
+      - ./drone-data:/data
+      - /var/run/docker.sock:/var/run/docker.sock
+
+    restart: always
+
+    environment:
+      - DRONE_SERVER_PROTO=${DRONE_SERVER_PROTO}
+      - DRONE_SERVER_HOST=${DRONE_SERVER_HOST}
+      - DRONE_RUNNER_CAPACITY=${DRONE_RUNNER_CAPACITY}
+      - DRONE_TLS_AUTOCERT=${DRONE_TLS_AUTOCERT}
+      - DRONE_GITHUB_SERVER=${DRONE_GITHUB_SERVER}
+      - DRONE_GITHUB_CLIENT_ID=${DRONE_GITHUB_CLIENT_ID}
+      - DRONE_GITHUB_CLIENT_SECRET=${DRONE_GITHUB_CLIENT_SECRET}
+      - DRONE_GIT_ALWAYS_AUTH=${DRONE_GIT_ALWAYS_AUTH}
